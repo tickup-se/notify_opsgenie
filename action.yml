@@ -21,8 +21,7 @@ inputs:
     required: true
   team:
     description: 'Team tag'
-    required: false
-    default: ""
+    required: true
   tags:
     description: 'Optional tags'
     required: false
