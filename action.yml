@@ -1,0 +1,40 @@
+name: 'tickup-se/notify_opsgenie'
+description: 'Send an incident to OpsGenie'
+author: 'TickUp'
+
+branding:
+  icon: 'x'
+  color: 'red'
+
+inputs:
+  alias:
+    description: 'Unique identifier'
+    required: true
+  priority:
+    description: 'Priority level'
+    required: true
+  message:
+    description: 'Alert message'
+    required: true
+  api_key:
+    description: 'OpsGenie API Key'
+    required: true
+  team:
+    description: 'Team tag'
+    required: false
+    default: ""
+  tags:
+    description: 'Optional tags'
+    required: false
+    default: ""
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.alias }}
+    - ${{ inputs.message }}
+    - ${{ inputs.priority }}
+    - ${{ inputs.api_key }}
+    - ${{ inputs.team }}
+    - ${{ inputs.tags }}
