@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/opsgenie/opsgenie-go-sdk-v2/client"
 	"github.com/opsgenie/opsgenie-go-sdk-v2/incident"
 	"log"
@@ -9,13 +8,8 @@ import (
 )
 
 func main() {
-
-	//Start of action
-	fmt.Println("opsgenie incident report started")
-
 	//Extract all arguments
 	allArguments := os.Args[1:]
-	fmt.Println(allArguments)
 
 	//Did we get the correct number of arguments
 	if len(allArguments) != 5 {
@@ -27,11 +21,13 @@ func main() {
 	if len(priority) != 2 {
 		log.Fatal("priority string is not 2 characters 'Pn', provided string: " + priority)
 	}
+
 	//ASCII value of '0' is decimal 48 and '9' is decimal 57.
 	if priority[0] != 'P' || priority[1] < 49 || priority[1] > 53 {
 		log.Fatal("priority myst be formatted as 'Pn' where P is capital and n is a number between 1 and 5, provided string: " + priority)
 	}
 
+	//Convert SHA to short-SHA (first 7 characters)
 	var githubSha = os.Getenv("GITHUB_SHA")
 	if len(githubSha) < 7 {
 		githubSha = "(unknown)"
