@@ -1,6 +1,6 @@
 FROM golang:1.19-alpine3.16
 WORKDIR /app
-COPY go.mod main.go ./
+COPY . .
 RUN go mod download
-RUN go build -o action .
+RUN go build -o action cmd/main.go
 CMD [ "/app/action" ]
