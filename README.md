@@ -28,6 +28,27 @@ The team to address this incident to
 
 Custom tags
 
+## Prefilled information
+
+The incident report alreday contains decorated information consiting of:
+
+**head**
+
+The repository name
+
+**Decription**
+
+Workflow name
+
+Short SHA (7 characters)
+
+**Details**
+
+Runner OS
+
+Runner Arch
+
+Branch
 
 ## Usage
 
