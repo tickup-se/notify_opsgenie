@@ -32,6 +32,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - "/app/action"
     - ${{ inputs.alias }}
     - ${{ inputs.message }}
     - ${{ inputs.priority }}
