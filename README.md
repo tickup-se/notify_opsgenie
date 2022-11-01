@@ -40,7 +40,7 @@ Sending incidents to OpsGenie may be triggered by just failing actions or by adv
 ```yaml
 - name: Send OpsGenie incident
   if: success()
-  uses: tickup-se/notify_opsgenie@master
+  uses: tickup-se/notify_opsgenie@v1
   with:
     API_KEY: ${{ secrets.OPS_GENIE }}
     PRIORITY: 'P5'
