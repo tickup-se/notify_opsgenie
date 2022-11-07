@@ -3,24 +3,29 @@ description: 'Send an incident to OpsGenie'
 author: 'TickUp'
 
 branding:
-  icon: 'x'
-  color: 'red'
+  icon: 'activity'
+  color: 'orange'
 
 inputs:
-  priority:
-    description: 'Priority level'
-    required: true
   message:
     description: 'Alert message'
+    required: false
+    default: ""
+  description:
+    description: 'Alert description'
+    required: false
+    default: ""
+  priority:
+    description: 'Priority level'
     required: true
   api_key:
     description: 'OpsGenie API Key'
     required: true
   team:
-    description: 'Team tag'
+    description: 'Team'
     required: true
-  tags:
-    description: 'Optional tags'
+  tag:
+    description: 'Optional tag'
     required: false
     default: ""
 
@@ -30,7 +35,8 @@ runs:
   args:
     - "/app/action"
     - ${{ inputs.message }}
+    - ${{ inputs.description }}
     - ${{ inputs.priority }}
     - ${{ inputs.api_key }}
     - ${{ inputs.team }}
-    - ${{ inputs.tags }}
+    - ${{ inputs.tag }}

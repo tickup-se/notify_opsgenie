@@ -8,41 +8,45 @@ You also need a configured **team** as a recipient of the incidents. If you misc
 
 ## Parameters
 
-**API_KEY**
+**MESSAGE** (optional)
 
-Your OpsGenie secret API key. Use the repository or organization secrets as your key storage.
+Main message. If not provided a generic message will be provided stating the repository generating the alert.
 
-**PRIORITY**
+**DESCRIPTION** (optional)
+
+Will be part of the description section of the incident. The description already contains the short SHA and workflow name.
+
+**PRIORITY** (required)
 
 The priority level of your incident (P1 -> P5)
 
-**MESSAGE**
+**API_KEY** (required)
 
-Your message. Will be part of the description part of the incident.
+Your OpsGenie secret API key. Use the repository or organization secrets as your key storage.
 
-**TEAM**
+**TEAM** (required)
  
 The team to address this incident to 
 
-**TAGS** (Optional)
+**TAG** (optional)
 
-Custom tags
+Custom tag
 
 ## Prefilled information
 
 The incident report alreday contains decorated information consiting of:
 
-**head**
+**Title:**
 
-The repository name
+The repository name (override by providing **MESSAGE**)
 
-**Decription**
+**Decription:**
 
 Workflow name
 
 Short SHA (7 characters)
 
-**Details**
+**Details:**
 
 Runner OS
 
@@ -58,15 +62,31 @@ Sending incidents to OpsGenie may be triggered by just failing actions or by adv
 
 #### Example Usage:
 
+*Minimal:*
+
 ```yaml
 - name: Send OpsGenie incident
   if: success()
-  uses: tickup-se/notify_opsgenie@v1
+  uses: tickup-se/notify_opsgenie@v2
   with:
     API_KEY: ${{ secrets.OPS_GENIE }}
     PRIORITY: 'P5'
-    MESSAGE: 'Some text'
-    TEAM: 'existing teamname' 
+    TEAM: 'existing team name' 
+``` 
+
+*All parameters:*
+
+```yaml
+- name: Send OpsGenie incident
+  if: success()
+  uses: tickup-se/notify_opsgenie@v2
+  with:
+    MESSAGE: 'some message'
+    DESCRIPTION: 'some description'
+    API_KEY: ${{ secrets.OPS_GENIE }}
+    PRIORITY: 'P5'
+    TEAM: 'existing team name'
+    TAG: 'some tag'
 ``` 
 
 
